@@ -1,6 +1,4 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -8,26 +6,10 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+      
       <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur provident perspiciatis quis assumenda ipsam voluptate recusandae, neque suscipit eum nihil iste rerum pariatur distinctio sint dolorum ab cumque praesentium excepturi nostrum, obcaecati dolor alias veniam! Quae ratione modi tempore sunt aut voluptatum molestiae officia natus, architecto magni maxime illum impedit distinctio praesentium animi et quam perferendis obcaecati pariatur ab tempora explicabo neque sit? Aspernatur eligendi asperiores quisquam. Fugiat voluptatem illum molestiae dolore exercitationem omnis ipsa eveniet labore est quaerat, voluptatibus impedit recusandae, aspernatur inventore autem nulla, similique ullam nisi. Porro possimus suscipit nulla totam, eius quibusdam blanditiis. Assumenda, quos saepe.
+      
     </>
   )
 }
