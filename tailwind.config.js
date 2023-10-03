@@ -3,6 +3,9 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
+      fontFamily: {
+        inter: "Inter, sans-serif", // Adds a new `font-inter` class
+      },
       colors: {
         "theme-primary": "#FF444A",
         "theme-dark": "#0B0B0B",
