@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
@@ -7,6 +7,8 @@ const Register = () => {
 
     const {createUser} = useContext(AuthContext);
     // console.log(authInfo);
+    const [registerError, setRegisterError] = useState('');
+    const [success, setSuccess] = useState('');
 
     const handleRegister = (e) => {
         e.preventDefault();
@@ -15,13 +17,28 @@ const Register = () => {
         const password = e.target.password.value;
         console.log(name, email, password)
 
+        //reset error
+        setRegisterError('');
+        //reset success
+        setSuccess('');
+
+        if(password.length < 6){
+            setRegisterError('Password should be at least 6 characters or longer');
+            return;
+        } else if(!/[A-Z]/.test(password) ) {
+            setRegisterError('Your Password should have at least one Uppercase characters.');
+            return;
+        }
+
         //create user in firebase
         createUser(email, password)
         .then(result => {
-            console.log(result.user)
+            console.log(result.user);
+            setSuccess(`User: ${email} created successfully`);
         })
         .catch(error => {
             console.error(error)
+            setRegisterError(error.message);
         })
 
     }
@@ -65,6 +82,12 @@ const Register = () => {
                             <button className="btn bg-emerald-300 text-white">Register</button>
                         </div>
                     </form>
+                    {
+                        registerError && <p className="text-red-600">{registerError}</p>
+                    }
+                    {
+                        success && <p className="text-green-600">{success}</p>
+                    }
                     <p>Already Registered? <Link to="/login"><button className="btn bg-cyan-400 btn-sm text-white">Login</button></Link></p>
                 </div>
             </div>
