@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
 const Register = () => {
 
@@ -9,13 +10,16 @@ const Register = () => {
     // console.log(authInfo);
     const [registerError, setRegisterError] = useState('');
     const [success, setSuccess] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
 
     const handleRegister = (e) => {
         e.preventDefault();
         const name = e.target.email.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-        console.log(name, email, password)
+        const accepted = e.target.terms.checked;
+        console.log(name, email, password, accepted)
 
         //reset error
         setRegisterError('');
@@ -27,6 +31,9 @@ const Register = () => {
             return;
         } else if(!/[A-Z]/.test(password) ) {
             setRegisterError('Your Password should have at least one Uppercase characters.');
+            return;
+        } else if(!accepted) {
+            setRegisterError('Please accept our Terms & Conditions');
             return;
         }
 
@@ -73,7 +80,21 @@ const Register = () => {
                             <label className="label">
                             <span className="label-text">Password</span>
                             </label>
-                            <input type="password" name="password" required placeholder="Password" className="input input-bordered" />
+
+                            <div className="relative">
+                                <input type={ showPassword ? "text" : "password" } name="password" required placeholder="Password" className="input input-bordered w-full" />
+                                <span className="absolute top-4 right-2" onClick={  () => setShowPassword(!showPassword)  }>
+                                    {
+                                        showPassword ? <FaEyeSlash></FaEyeSlash> : <FaEye></FaEye>
+                                    }
+                                </span>
+                            </div>
+                            <br />
+                            <div className="mb-2">
+                                <input type="checkbox" name="terms" id="terms" />
+                                <label className="ml-2" htmlFor="terms">Accept our <a href="">Terms & Conditions</a></label>
+                            </div>
+                            <br />
                             <label className="label">
                             <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                             </label>
