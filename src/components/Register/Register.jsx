@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { sendEmailVerification } from "firebase/auth";
+import { sendEmailVerification, updateProfile } from "firebase/auth";
 
 const Register = () => {
 
@@ -43,6 +43,16 @@ const Register = () => {
         .then(result => {
             console.log(result.user);
             setSuccess(`User: ${email} created successfully`);
+
+            //update profile
+            // updateProfile(result.user, {
+            //     displayName: name, photoURL: "https://example.com/jane-q-user/profile.jpg"
+            //     }).then(() => {
+            //         console.log('Profile Updated')
+            //     }).catch(error => {
+            //         console.error(error)
+            // });
+            
 
             //send verification email
             sendEmailVerification(result.user)

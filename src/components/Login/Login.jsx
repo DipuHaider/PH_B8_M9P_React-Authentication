@@ -22,6 +22,11 @@ const Login = () => {
             console.log(result.user);
             e.target.reset();
             navigate('/');
+            // if(result.user.emailVerified){
+            //     setSuccess('User Logged in successfully')
+            // } else {
+            //     alert('Please verify your your Email address')
+            // }
         })
         .catch(error => {
             console.error(error)
