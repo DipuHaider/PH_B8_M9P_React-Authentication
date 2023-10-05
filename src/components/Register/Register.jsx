@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
+import { sendEmailVerification } from "firebase/auth";
 
 const Register = () => {
 
@@ -42,6 +43,12 @@ const Register = () => {
         .then(result => {
             console.log(result.user);
             setSuccess(`User: ${email} created successfully`);
+
+            //send verification email
+            sendEmailVerification(result.user)
+            .then(() => {
+                alert('Please check your Email and verify your account.')
+            })
         })
         .catch(error => {
             console.error(error)
